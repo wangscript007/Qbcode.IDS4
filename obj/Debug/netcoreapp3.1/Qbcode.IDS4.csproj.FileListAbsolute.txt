@@ -1,0 +1,16 @@
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\bin\Debug\netcoreapp3.1\Qbcode.IDS4.deps.json
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\bin\Debug\netcoreapp3.1\Qbcode.IDS4.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\bin\Debug\netcoreapp3.1\Qbcode.IDS4.pdb
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.csprojAssemblyReference.cache
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.AssemblyInfoInputs.cache
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.AssemblyInfo.cs
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.Request.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.pdb
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\bin\Debug\netcoreapp3.1\Qbcode.IDS4.deps.json
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\bin\Debug\netcoreapp3.1\Qbcode.IDS4.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\bin\Debug\netcoreapp3.1\Qbcode.IDS4.pdb
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.csprojAssemblyReference.cache
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.AssemblyInfoInputs.cache
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.AssemblyInfo.cs
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.dll
+C:\绿色\projects\service.core30\api.core\Qbcode.IDS4\obj\Debug\netcoreapp3.1\Qbcode.IDS4.pdb

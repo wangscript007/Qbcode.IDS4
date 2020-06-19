@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Qbcode.IDS4/1.0.0": {
         "dependencies": {
-          "BeetleX.Bumblebee": "1.3.6.6",
+          "BeetleX.Bumblebee": "1.3.6.7",
           "IdentityModel": "4.2.0",
           "Microsoft.Extensions.Caching.Abstractions": "3.1.3",
           "Microsoft.Extensions.Caching.Memory": "3.1.3",
@@ -21,34 +21,23 @@
           "Qbcode.IDS4.dll": {}
         }
       },
-      "BeetleX/1.5.1.1": {
+      "BeetleX/1.5.1.7": {
         "runtime": {
           "lib/netcoreapp2.1/BeetleX.dll": {
-            "assemblyVersion": "1.5.1.1",
-            "fileVersion": "1.5.1.1"
+            "assemblyVersion": "1.5.1.7",
+            "fileVersion": "1.5.1.7"
           }
         }
       },
-      "BeetleX.Bumblebee/1.3.6.6": {
+      "BeetleX.FastHttpApi/1.8.2.7": {
         "dependencies": {
-          "BeetleX.FastHttpApi": "1.8.1.9"
-        },
-        "runtime": {
-          "lib/netcoreapp2.1/Bumblebee.dll": {
-            "assemblyVersion": "1.3.6.6",
-            "fileVersion": "1.3.6.6"
-          }
-        }
-      },
-      "BeetleX.FastHttpApi/1.8.1.9": {
-        "dependencies": {
-          "BeetleX": "1.5.1.1",
+          "BeetleX": "1.5.1.7",
           "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/netcoreapp2.1/BeetleX.FastHttpApi.dll": {
-            "assemblyVersion": "1.8.1.9",
-            "fileVersion": "1.8.1.9"
+            "assemblyVersion": "1.8.2.7",
+            "fileVersion": "1.8.2.7"
           }
         }
       },
@@ -250,7 +239,15 @@
         }
       },
       "System.Security.Cryptography.Cng/4.5.0": {},
-      "System.Text.Encodings.Web/4.6.0": {}
+      "System.Text.Encodings.Web/4.6.0": {},
+      "BeetleX.Bumblebee/1.3.6.7": {
+        "dependencies": {
+          "BeetleX.FastHttpApi": "1.8.2.7"
+        },
+        "runtime": {
+          "Bumblebee.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -259,26 +256,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BeetleX/1.5.1.1": {
+    "BeetleX/1.5.1.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mcmPqRLVTa7qqVFBI30TlEfmqRh31NHEPGppjXZ5aR1ZZthtJ4i6cS8WChwpZflH0tSaMZLSexD7qAqvk9NXrA==",
-      "path": "beetlex/1.5.1.1",
-      "hashPath": "beetlex.1.5.1.1.nupkg.sha512"
+      "sha512": "sha512-n6eEUFxOH0N8ptk711YY9EE0kWxHSwmuPVYFjgemiWAX7xwlYmp4yuYl3oUOxbtHHNbMmOj8lOsEJbmrwFy/yA==",
+      "path": "beetlex/1.5.1.7",
+      "hashPath": "beetlex.1.5.1.7.nupkg.sha512"
     },
-    "BeetleX.Bumblebee/1.3.6.6": {
+    "BeetleX.FastHttpApi/1.8.2.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kv55t39lWA/tpvh4E6NuUmv1WSZbaSHp1RHqLQgaBugTXc/Lo6HOzTnJ0eSCGjFcTF4zcSj7ltZqxMkPzOSTNw==",
-      "path": "beetlex.bumblebee/1.3.6.6",
-      "hashPath": "beetlex.bumblebee.1.3.6.6.nupkg.sha512"
-    },
-    "BeetleX.FastHttpApi/1.8.1.9": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Wt8EbBxuBg+vMY7iKKKY2s7xd+vTymXBEgKjcWCmfWrEDmf4dlEzT/fONJ0XV8xx24+BYg6Y4wkeFmmECQb4Nw==",
-      "path": "beetlex.fasthttpapi/1.8.1.9",
-      "hashPath": "beetlex.fasthttpapi.1.8.1.9.nupkg.sha512"
+      "sha512": "sha512-nC+y3gKx+BOIu3tKOPNqNAL/76awKS+EkbLs5iS276xYrL6+ONGenTrvkCIS11AlzpTZfjbc9TXJiaobk3qB4Q==",
+      "path": "beetlex.fasthttpapi/1.8.2.7",
+      "hashPath": "beetlex.fasthttpapi.1.8.2.7.nupkg.sha512"
     },
     "IdentityModel/4.2.0": {
       "type": "package",
@@ -426,6 +416,11 @@
       "sha512": "sha512-BXgFO8Yi7ao7hVA/nklD0Hre1Bbce048ZqryGZVFifGNPuh+2jqF1i/jLJLMfFGZIzUOw+nCIeH24SQhghDSPw==",
       "path": "system.text.encodings.web/4.6.0",
       "hashPath": "system.text.encodings.web.4.6.0.nupkg.sha512"
+    },
+    "BeetleX.Bumblebee/1.3.6.7": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

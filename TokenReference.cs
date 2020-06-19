@@ -47,13 +47,12 @@ namespace Qbcode.IDS4
 
         public List<ClaimInfo> GetClaims(string token, SecretInfo secret)
         {
-            List<ClaimInfo> result = new List<ClaimInfo>();
-
             if (gateway.HttpServer.EnableLog(LogType.Debug))
             {
                 gateway.HttpServer.Log(LogType.Debug, $"secret:{JsonConvert.SerializeObject(secret)}");
             }
 
+            List<ClaimInfo> result;
             if (cacheDuration <= 0)
             {
                 if (gateway.HttpServer.EnableLog(LogType.Debug))

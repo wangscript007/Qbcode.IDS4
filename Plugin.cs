@@ -120,7 +120,7 @@ namespace Qbcode.IDS4
                                 }
 
                                 IEnumerable<string> scopes = claims.Where(c => c.Type == "aud").Select(c => c.Value);
-                                if (scopes.Intersect(policy.Scopes).Count() != policy.Scopes.Count())
+                                if (scopes.Intersect(policy.Scopes).Count() == 0)
                                 {
                                     if (isLog)
                                     {
@@ -133,35 +133,44 @@ namespace Qbcode.IDS4
                             if (!isInvalid)
                             {
                                 //需要claim认证
-                                if (!string.IsNullOrWhiteSpace(policy.Claim.Key))
+                                if (policy.Claim.Length > 0)
                                 {
-                                    if (isLog)
-                                    {
-                                        this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need claim:{policy.Claim.Key}");
-                                    }
 
-                                    string[] values = claims.Where(c => c.Type == policy.Claim.Key).Select(c => c.Value).ToArray();
-                                    //当前 key下没有任何claim的值
-                                    if (!values.Any())
+                                    //并且关系  只要有一个不通过就不通过
+                                    for (int i = 0; i < policy.Claim.Length; i++)
                                     {
+                                        ClaimItemInfo claim = policy.Claim[i];
+
                                         if (isLog)
                                         {
-                                            this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  claim {policy.Claim.Key} is not value");
+                                            this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need claim:{claim.Key}");
                                         }
 
-                                        isInvalid = true;
-                                    }
-                                    //如果设置只允许哪些值，只要其中一个值不存在就不通过
-                                    else if (policy.Claim.Values.Any())
-                                    {
-                                        if (isLog)
+                                        string[] values = claims.Where(c => c.Type == claim.Key).Select(c => c.Value).ToArray();
+                                        //当前 key下没有任何claim的值
+                                        if (!values.Any())
                                         {
-                                            this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need claim values:{string.Join(",", policy.Claim.Values)}");
-                                        }
+                                            if (isLog)
+                                            {
+                                                this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  claim {claim.Key} is not value");
+                                            }
 
-                                        if (values.Intersect(policy.Claim.Values).Count() == 0)
-                                        {
                                             isInvalid = true;
+                                            break;
+                                        }
+                                        //如果设置只允许哪些值，只要其中一个值不存在就不通过
+                                        else if (claim.Values.Any())
+                                        {
+                                            if (isLog)
+                                            {
+                                                this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need claim values:{string.Join(",", claim.Values)}");
+                                            }
+
+                                            if (values.Intersect(claim.Values).Count() == 0)
+                                            {
+                                                isInvalid = true;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
@@ -201,7 +210,7 @@ namespace Qbcode.IDS4
                 VerifyPaths = this.setting.Urls.Select(c => c.Url).ToArray();
                 //缓存 某个url规则下的 认证方式 需要claim还是需要scopes什么的
                 PatternPolicyMaps.Clear();
-                this.setting.Urls.ForEach(c =>
+                this.setting.Urls.ToList().ForEach(c =>
                 {
                     PolicyInfo policy = this.setting.Policys.FirstOrDefault(d => d.Name == c.Policy);
                     if (policy != null)
@@ -380,11 +389,11 @@ namespace Qbcode.IDS4
         /// <summary>
         /// 规则
         /// </summary>
-        public List<PolicyInfo> Policys { get; set; } = new List<PolicyInfo>();
+        public PolicyInfo[] Policys { get; set; } = new PolicyInfo[] { };
         /// <summary>
         /// url
         /// </summary>
-        public List<UrlInfo> Urls { get; set; } = new List<UrlInfo>();
+        public UrlInfo[] Urls { get; set; } = new UrlInfo[] { };
     }
 
     internal class PolicyInfo
@@ -396,11 +405,11 @@ namespace Qbcode.IDS4
         /// <summary>
         /// claim验证
         /// </summary>
-        public ClaimItemInfo Claim { get; set; } = new ClaimItemInfo();
+        public ClaimItemInfo[] Claim { get; set; } = new ClaimItemInfo[] { };
         /// <summary>
         /// scope验证
         /// </summary>
-        public List<string> Scopes { get; set; } = new List<string>();
+        public string[] Scopes { get; set; } = new string[] { };
 
     }
 
@@ -433,6 +442,6 @@ namespace Qbcode.IDS4
         /// <summary>
         /// 允许哪些值
         /// </summary>
-        public List<string> Values { get; set; } = new List<string>();
+        public string[] Values { get; set; } = new string[] { };
     }
 }

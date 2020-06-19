@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "BeetleX/1.5.1.1": {
+      "BeetleX/1.5.1.7": {
         "type": "package",
         "compile": {
           "lib/netcoreapp2.1/BeetleX.dll": {}
@@ -11,22 +11,10 @@
           "lib/netcoreapp2.1/BeetleX.dll": {}
         }
       },
-      "BeetleX.Bumblebee/1.3.6.6": {
+      "BeetleX.FastHttpApi/1.8.2.7": {
         "type": "package",
         "dependencies": {
-          "BeetleX.FastHttpApi": "1.8.1.9"
-        },
-        "compile": {
-          "lib/netcoreapp2.1/Bumblebee.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp2.1/Bumblebee.dll": {}
-        }
-      },
-      "BeetleX.FastHttpApi/1.8.1.9": {
-        "type": "package",
-        "dependencies": {
-          "BeetleX": "1.5.1.1",
+          "BeetleX": "1.5.1.7",
           "Newtonsoft.Json": "11.0.2"
         },
         "compile": {
@@ -282,45 +270,47 @@
         "runtime": {
           "lib/netcoreapp3.0/System.Text.Encodings.Web.dll": {}
         }
+      },
+      "BeetleX.Bumblebee/1.3.6.7": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "BeetleX.FastHttpApi": "1.8.2.7"
+        },
+        "compile": {
+          "bin/placeholder/BeetleX.Bumblebee.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BeetleX.Bumblebee.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "BeetleX/1.5.1.1": {
-      "sha512": "mcmPqRLVTa7qqVFBI30TlEfmqRh31NHEPGppjXZ5aR1ZZthtJ4i6cS8WChwpZflH0tSaMZLSexD7qAqvk9NXrA==",
+    "BeetleX/1.5.1.7": {
+      "sha512": "n6eEUFxOH0N8ptk711YY9EE0kWxHSwmuPVYFjgemiWAX7xwlYmp4yuYl3oUOxbtHHNbMmOj8lOsEJbmrwFy/yA==",
       "type": "package",
-      "path": "beetlex/1.5.1.1",
+      "path": "beetlex/1.5.1.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "beetlex.1.5.1.1.nupkg.sha512",
+        "beetlex.1.5.1.7.nupkg.sha512",
         "beetlex.nuspec",
+        "beetlex200.png",
         "lib/netcoreapp2.1/BeetleX.dll",
         "lib/netstandard2.0/BeetleX.dll"
       ]
     },
-    "BeetleX.Bumblebee/1.3.6.6": {
-      "sha512": "kv55t39lWA/tpvh4E6NuUmv1WSZbaSHp1RHqLQgaBugTXc/Lo6HOzTnJ0eSCGjFcTF4zcSj7ltZqxMkPzOSTNw==",
+    "BeetleX.FastHttpApi/1.8.2.7": {
+      "sha512": "nC+y3gKx+BOIu3tKOPNqNAL/76awKS+EkbLs5iS276xYrL6+ONGenTrvkCIS11AlzpTZfjbc9TXJiaobk3qB4Q==",
       "type": "package",
-      "path": "beetlex.bumblebee/1.3.6.6",
+      "path": "beetlex.fasthttpapi/1.8.2.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "beetlex.bumblebee.1.3.6.6.nupkg.sha512",
-        "beetlex.bumblebee.nuspec",
-        "beetlex200.png",
-        "lib/netcoreapp2.1/Bumblebee.dll"
-      ]
-    },
-    "BeetleX.FastHttpApi/1.8.1.9": {
-      "sha512": "Wt8EbBxuBg+vMY7iKKKY2s7xd+vTymXBEgKjcWCmfWrEDmf4dlEzT/fONJ0XV8xx24+BYg6Y4wkeFmmECQb4Nw==",
-      "type": "package",
-      "path": "beetlex.fasthttpapi/1.8.1.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "beetlex.fasthttpapi.1.8.1.9.nupkg.sha512",
+        "beetlex.fasthttpapi.1.8.2.7.nupkg.sha512",
         "beetlex.fasthttpapi.nuspec",
+        "beetlex200.png",
         "lib/netcoreapp2.1/BeetleX.FastHttpApi.dll"
       ]
     },
@@ -781,11 +771,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "BeetleX.Bumblebee/1.3.6.7": {
+      "type": "project",
+      "path": "../Bumblebee/Bumblebee/Bumblebee.csproj",
+      "msbuildProject": "../Bumblebee/Bumblebee/Bumblebee.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "BeetleX.Bumblebee >= 1.3.6.6",
+      "BeetleX.Bumblebee >= 1.3.6.7",
       "IdentityModel >= 4.2.0",
       "Microsoft.Extensions.Caching.Abstractions >= 3.1.3",
       "Microsoft.Extensions.Caching.Memory >= 3.1.3",
@@ -796,19 +791,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tryparse\\.nuget\\packages\\": {}
+    "C:\\Users\\wwping\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\绿色\\projects\\service.core30\\api.core\\Qbcode.IDS4\\Qbcode.IDS4.csproj",
+      "projectUniqueName": "D:\\绿色\\projects\\service.core30\\api.core\\Qbcode.IDS4\\Qbcode.IDS4.csproj",
       "projectName": "Qbcode.IDS4",
-      "projectPath": "C:\\绿色\\projects\\service.core30\\api.core\\Qbcode.IDS4\\Qbcode.IDS4.csproj",
-      "packagesPath": "C:\\Users\\tryparse\\.nuget\\packages\\",
-      "outputPath": "C:\\绿色\\projects\\service.core30\\api.core\\Qbcode.IDS4\\obj\\",
+      "projectPath": "D:\\绿色\\projects\\service.core30\\api.core\\Qbcode.IDS4\\Qbcode.IDS4.csproj",
+      "packagesPath": "C:\\Users\\wwping\\.nuget\\packages\\",
+      "outputPath": "D:\\绿色\\projects\\service.core30\\api.core\\Qbcode.IDS4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tryparse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wwping\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -820,7 +815,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\绿色\\projects\\service.core30\\api.core\\Bumblebee\\Bumblebee\\Bumblebee.csproj": {
+              "projectPath": "D:\\绿色\\projects\\service.core30\\api.core\\Bumblebee\\Bumblebee\\Bumblebee.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -832,10 +831,6 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
-          "BeetleX.Bumblebee": {
-            "target": "Package",
-            "version": "[1.3.6.6, )"
-          },
           "IdentityModel": {
             "target": "Package",
             "version": "[4.2.0, )"
@@ -880,7 +875,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

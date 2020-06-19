@@ -50,17 +50,14 @@ namespace Qbcode.IDS4
 
         public void Execute(EventRequestingArgs e)
         {
-            bool isInvalid = false, isLog = this.mGateway.HttpServer.EnableLog(LogType.Debug);
+            bool isInvalid = false;
 
             if (setting.ExSuffix.Length > 0 && setting.ExSuffix.Contains(e.Request.Ext))
             {
                 return;
             }
 
-            if (isLog)
-            {
-                this.mGateway.HttpServer.Log(LogType.Debug, ":::::::identity server4  VerifyPaths:" + string.Join(",", this.VerifyPaths));
-            }
+            DebugMsg(":::::::identity server4  VerifyPaths:" + string.Join(",", this.VerifyPaths));
 
             //设置了规则
             if (this.VerifyPaths != null && this.VerifyPaths.Length > 0)
@@ -80,20 +77,12 @@ namespace Qbcode.IDS4
                         //去取 claims
                         List<ClaimInfo> claims = GetClaims(e.Request, secret);
 
+                        DebugMsg(":::::::identity server4  claims:" + JsonConvert.SerializeObject(claims.Select(c => new { c.Type, c.Value })));
 
-
-                        if (isLog)
-                        {
-                            this.mGateway.HttpServer.Log(LogType.Debug, ":::::::identity server4  claims:" + JsonConvert.SerializeObject(claims.Select(c => new { c.Type, c.Value })));
-                        }
                         // 没有任何claim  认证不通过
                         if (!claims.Any())
                         {
-                            if (isLog)
-                            {
-                                this.mGateway.HttpServer.Log(LogType.Debug, ":::::::identity server4  claims is empty");
-                            }
-
+                            DebugMsg(":::::::identity server4  claims is empty");
                             isInvalid = true;
                         }
                         else
@@ -103,10 +92,7 @@ namespace Qbcode.IDS4
                                 string issuer = claims.FirstOrDefault(c => c.Type == "issuer")?.Value ?? "";
                                 if (issuer != setting.Authority)
                                 {
-                                    if (isLog)
-                                    {
-                                        this.mGateway.HttpServer.Log(LogType.Debug, ":::::::identity server4  issuer is invalid");
-                                    }
+                                    DebugMsg(":::::::identity server4  issuer is invalid");
                                     isInvalid = true;
                                 }
                             }
@@ -114,18 +100,12 @@ namespace Qbcode.IDS4
                             //需要scope 验证
                             if (!isInvalid && policy.Scopes.Any())
                             {
-                                if (isLog)
-                                {
-                                    this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need scopes:{string.Join(",", policy.Scopes)}");
-                                }
+                                DebugMsg($":::::::identity server4  need scopes:{string.Join(",", policy.Scopes)}");
 
                                 IEnumerable<string> scopes = claims.Where(c => c.Type == "aud").Select(c => c.Value);
                                 if (scopes.Intersect(policy.Scopes).Count() == 0)
                                 {
-                                    if (isLog)
-                                    {
-                                        this.mGateway.HttpServer.Log(LogType.Debug, ":::::::identity server4  scope invalid");
-                                    }
+                                    DebugMsg(":::::::identity server4  scope invalid");
                                     isInvalid = true;
                                 }
                             }
@@ -141,30 +121,20 @@ namespace Qbcode.IDS4
                                     {
                                         ClaimItemInfo claim = policy.Claim[i];
 
-                                        if (isLog)
-                                        {
-                                            this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need claim:{claim.Key}");
-                                        }
+                                        DebugMsg($":::::::identity server4  need claim:{claim.Key}");
 
                                         string[] values = claims.Where(c => c.Type == claim.Key).Select(c => c.Value).ToArray();
                                         //当前 key下没有任何claim的值
-                                        if (!values.Any())
+                                        if (values.Length == 0)
                                         {
-                                            if (isLog)
-                                            {
-                                                this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  claim {claim.Key} is not value");
-                                            }
-
+                                            DebugMsg($":::::::identity server4  claim {claim.Key} is not value");
                                             isInvalid = true;
                                             break;
                                         }
-                                        //如果设置只允许哪些值，只要其中一个值不存在就不通过
-                                        else if (claim.Values.Any())
+                                        //如果设置只允许哪些值，一个值都不存在就不通过
+                                        else if (claim.Values.Length > 0)
                                         {
-                                            if (isLog)
-                                            {
-                                                this.mGateway.HttpServer.Log(LogType.Debug, $":::::::identity server4  need claim values:{string.Join(",", claim.Values)}");
-                                            }
+                                            DebugMsg($":::::::identity server4  need claim values:{string.Join(",", claim.Values)}");
 
                                             if (values.Intersect(claim.Values).Count() == 0)
                                             {
@@ -191,6 +161,12 @@ namespace Qbcode.IDS4
                 e.Gateway.Response(e.Response, new NotSupportResult("Gateway token is invalid"));
                 this.mGateway.RequestIncrementCompleted(e.Request, 403, (long)(TimeWatch.GetTotalMilliseconds() - e.Request.RequestTime), null);
             }
+        }
+
+        private void DebugMsg(string msg)
+        {
+            if (this.mGateway.HttpServer.EnableLog(LogType.Debug))
+                this.mGateway.HttpServer.Log(LogType.Debug, msg);
         }
 
         public void Init(Gateway gateway, Assembly assembly)

@@ -42,12 +42,14 @@ g.LoadPlugin(
             //起个名字
             "Name": "default",
             //claim规则 
-            "Claim": {
-               //验证哪个claim
-                "Key": "",
-                //需要哪些值  如果不填写 则只要存在key配置的名字的claim即可验证成功
-                "Values": []
-            },
+            "Claim": [
+                {
+                   //验证哪个claim
+                    "Key": "",
+                    //需要哪些值  如果不填写 则只要存在key配置的名字的claim即可验证成功
+                    "Values": []
+                }
+            ],
             //允许哪些scope(也就是认证中心颁发给某个api的apiName)  多个为并且的关系 也就是全部都要存在， 在claim规则中配置key为aud的claim验证也是一样的效果
             "Scopes": [
                 "user"
